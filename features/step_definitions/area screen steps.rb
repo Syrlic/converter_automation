@@ -1,37 +1,49 @@
-Given(/^I land on help popup$/) do
-  text("Help")
+
+Given(/^I land on "([^"]*)" popup$/) do |value|
+  actual_value = find_element(id:"alertTitle").text
+  if actual_value != value
+    fail("Expected value is #{value}, but actual value was #{actual_value}")
+  end
 end
 
 When(/^I click on Got it button$/) do
   find_element(id:"button1").click
 end
 
-#Then(/^I land on "([^"]*)" screen$/) do |value|
- # find_element(id:"toolbar").find_element(xpath:"//android.widget.TextView[@text=#{value}]")
-#end
 
 When(/^I click on Swap button$/) do
-  puts("User clicks on Swap button")
+  find_element(id:"fab").click
 end
 
 Then(/^I see "([^"]*)" in From header$/) do |value|
-  find_element(id:"")
+  actual_value = find_element(id:"header_text_unit_from").text
+  if actual_value != value
+    fail("Expected value is #{value}, but actual value was #{actual_value}")
+  end
 end
 
 And(/^I see "([^"]*)" in To header$/) do |value|
-  puts("To header values is #{value}")
+  actual_value = find_element(id:"header_text_unit_to").text
+  if actual_value != value
+    fail("Expected value is #{value}, but actual value was #{actual_value}")
+  end
 end
 
 And(/^I click on Clear button$/) do
-  puts("User clicks on Clear button")
+  find_element(id:"menu_clear").click
 end
 
 When(/^I enter "([^"]*)" to From field$/) do |value|
-  puts("User entered value #{value}")
-end
+  find_element(id:"header_value_from").send_keys(value)
+  end
 
 Then(/^I get "([^"]*)" in To field$/) do |value|
-  puts("User sees #{value} in result field")
+  actual_value = find_element(id:"header_value_to").text
+  puts("Expected value is #{value}")
+  puts("Actual value is #{actual_value}")
+  if actual_value != value
+    fail("Expected value is #{value}, but actual value was #{actual_value}")
+  end
 end
 
 When(/^I click on From field$/) do
@@ -42,23 +54,18 @@ And(/^I press "([^"]*)" on soft keyboard$/) do |value|
   digits = value.split("")
   digits.each do |key|
   digit = Integer(key)
-  press_keyboard 7 + digit
+  press_keycode 7 + digit
     end
 end
 
-Then(/^I get"([^"]*)" in To field$/) do |value|
-  actual_value = find_element(id:"header_value_to").text
-  if actual_value != value
-    fail("Exspected value is #{value}, but actual value was #{actual_value}")
-  end
-end
-
 When(/^I select "([^"]*)" from left column$/) do |value|
-  find_element(id:"radio_group_from").find_element(xpath:"//android.widget.RadioGroup[@text=#{value}]").click
+  find_element(id:"radio_group_from").find_element(xpath:"//android.widget.RadioButton[@text='#{value}']").click
 end
 
-
-Then(/^I land on Area screen$/) do
-  sleep(2)
-  text("Area")
+Then(/^I land on "([^"]*)" screen$/) do |value|
+  actual_value = find_element(id:"toolbar").
+      find_element(xpath:"//android.widget.TextView[@text='#{value}']").text
+  if actual_value != value
+    fail("Expected value is #{value}, but actual value was #{actual_value}")
+  end
 end
