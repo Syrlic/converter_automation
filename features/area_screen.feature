@@ -29,7 +29,7 @@ Feature: User is able to convert area units
           |2        |2000000|
           |3        |3000000|
 
-        @wip
+
         Scenario: User is able to use soft keyboard to enter values
           Given I click on Clear button
           When I click on From field
@@ -41,3 +41,32 @@ Feature: User is able to convert area units
           When I select "Hectare" from left column
           Then I see "Hectare" in From header
           And I get "10000" in To field
+
+
+  @wip
+  Scenario Outline: User is able to convert itself units v.1.0
+    Given I click on Clear button
+    And I select "Sq Mile" from left column
+    And I select "<to>" from right column
+    Then I enter "3" to From field
+    And I get "<result>" in To field
+
+    Examples:
+      |result          |to           |
+      |7.77            |Sq Kilometre |
+      |7769964.331     |Sq Metre     |
+      |77699643310.08  |Sq Centimetre|
+
+  Scenario Outline: User is able to convert itself units v.1.1
+        Given I click on Clear button
+        And I select "<from>" from left column
+        And I select "<to>" from right column
+        Then I enter "<target>" to From field
+        And I get "<result>" in To field
+
+        Examples:
+          |target   |result    | from         |to           |
+          |1        |0.155     |Sq Centimetre |Sq Inch      |
+          |3        |2787.0912 |Sq Foot       |Sq Centimetre|
+          |8        |5120      |Sq Mile       |Acre         |
+

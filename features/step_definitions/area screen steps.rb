@@ -39,8 +39,6 @@ When(/^I enter "([^"]*)" to From field$/) do |value|
 
 Then(/^I get "([^"]*)" in To field$/) do |value|
   actual_value = find_element(id:"header_value_to").text
-  puts("Expected value is #{value}")
-  puts("Actual value is #{actual_value}")
   if actual_value != value
     fail("Expected value is #{value}, but actual value was #{actual_value}")
   end
@@ -59,9 +57,13 @@ And(/^I press "([^"]*)" on soft keyboard$/) do |value|
 end
 
 When(/^I select "([^"]*)" from left column$/) do |value|
-  find_element(id:"radio_group_from").find_element(xpath:"//android.widget.RadioButton[@text='#{value}']").click
+  select_item_left_column(value)
 end
 
 Then(/^I land on Area screen$/) do
   find_element(id:"toolbar").find_element(xpath:"//android.widget.TextView[@text='Area']")
+end
+
+And(/^I select "([^"]*)" from right column$/) do |value|
+  select_item_right_column(value)
 end
