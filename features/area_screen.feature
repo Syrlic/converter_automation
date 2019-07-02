@@ -10,7 +10,7 @@ Feature: User is able to convert area units
    # When I click on Got it button
    # Then I land on "Area" screen
 
-
+    @swap
     Scenario: User is able to swap values
       Given I see "Sq Kilometre" in From header
       And I see "Sq Metre" in To header
@@ -18,8 +18,8 @@ Feature: User is able to convert area units
       Then I see "Sq Metre" in From header
       And I see "Sq Kilometre" in To header
 
-
-      Scenario Outline: User is able to convert defaul units
+  @wip
+  Scenario Outline: User is able to convert defaul units
         Given I click on Clear button
         When I enter "<target>" to From field
         Then I get "<result>" in To field
@@ -34,7 +34,7 @@ Feature: User is able to convert area units
           Given I click on Clear button
           When I click on From field
           And I press "12" on soft keyboard
-          Then I get "13000000" in To field
+          Then I get "12000000" in To field
 
 
         Scenario:
@@ -43,7 +43,7 @@ Feature: User is able to convert area units
           And I get "10000" in To field
 
 
-  @wip
+  @hw
   Scenario Outline: User is able to convert itself units v.1.0
     Given I click on Clear button
     And I select "Sq Mile" from left column
@@ -57,6 +57,7 @@ Feature: User is able to convert area units
       |7769964.331     |Sq Metre     |
       |77699643310.08  |Sq Centimetre|
 
+  @hw
   Scenario Outline: User is able to convert itself units v.1.1
         Given I click on Clear button
         And I select "<from>" from left column

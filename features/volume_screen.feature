@@ -17,6 +17,6 @@ Feature: User is able to convert Volume units
       Then I land on "<result>" screen
       Examples:
         |target    |result     |
-       # | Power    | Power     |
+        | Power    | Power     |
         | Volume   | Volume    |
-       # | Currency | Currency  |
+        | Currency | Currency  |
